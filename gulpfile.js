@@ -28,7 +28,7 @@ gulp.task('serve', function() {
   var server = gls.new('bin/www');
   server.start();
 
-  gulp.watch(['public/build/**/*.css', 'views/**/*.jade'], function(file) {
+  gulp.watch(['public/build/**/*.css', 'public/build/**/*.js', 'views/**/*.jade'], function(file) {
     server.notify.apply(server, [file]);
   });
 
@@ -37,4 +37,8 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('default', ['serve']);
+gulp.task('watch', function() {
+  gulp.watch(['lib/front/js/**/*.jsx', 'lib/front/js/**/*.js'], ['js']);
+});
+
+gulp.task('default', ['serve', 'watch']);
