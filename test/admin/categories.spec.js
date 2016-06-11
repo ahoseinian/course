@@ -4,11 +4,13 @@ var should = require('should');
 var Category = require('../../lib/back/models/category');
 
 describe('admin categories', function() {
+  var base = '/admin/categories';
+
   describe('GET /', function() {
 
     it('is working fine', function(done) {
       server
-        .get('/admin/categories')
+        .get(base)
         .expect(function(res) {
           res.text.should.match(/Categories Admin Page/);
         })
@@ -21,9 +23,10 @@ describe('admin categories', function() {
 
     it('adds new categories', function(done) {
       server
-        .post('/admin/categories')
+        .post(base)
         .send({ name: 'test' })
         .end(function(err, res) {
+          should.not.exists(err);
           res.status.should.be.equal(302); //make sure it is a redirect
           Category.count(function(err, count) { //category model should be saved
             if (err) throw err;
