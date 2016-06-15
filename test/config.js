@@ -24,11 +24,12 @@ module.exports = {
   getCookie: function(res) {
     return res.headers['set-cookie'][0].split(';')[0];
   },
-  saveUser: function(data) {
+  saveUser: function(data, done) {
     var user = new User(data);
     user.password = user.generateHash(user.password);
     user.save(function(err) {
       if (err) throw err;
+      done();
     });
   }
 };
