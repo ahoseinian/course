@@ -87,12 +87,12 @@ describe('admin categories', function() {
 
     context('for guests', function() {
       it('is restricted', function(done) {
-      var cat = new Category({ name: 'test' });
-      cat.save();
+        var cat = new Category({ name: 'test' });
+        cat.save();
         server
           .get(base + '/' + cat._id + '/delete')
           .expect('Location', '/')
-          .expect(401, function(err, res) {
+          .expect(401, function(err) {
             if (err) throw err;
             Category.count(function(err, count) {
               count.should.be.equal(1);

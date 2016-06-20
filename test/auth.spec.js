@@ -42,8 +42,8 @@ describe('Auth', function() {
   context('Log in', function() {
 
     describe('with correct credentials', function() {
-      before(function() {
-        config.saveUser(config.currectUser);
+      beforeEach(function(done) {
+        config.saveUser(config.currectUser, done);
       });
 
       it('should redirect to /', function(done) {
