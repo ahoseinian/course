@@ -1,5 +1,6 @@
 'use strict';
 var User = require('../lib/back/models/user');
+var server = require('supertest')(require('../app'));
 
 module.exports = {
   currectAdmin: {
@@ -31,5 +32,13 @@ module.exports = {
       if (err) throw err;
       done();
     });
+  },
+  logIn: function(user, done) {
+    server
+      .post('/auth/login')
+      .send(user)
+      .expect(302)
+      .expect('Location', '/')
+      .end(done);
   }
 };
