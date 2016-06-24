@@ -18,12 +18,12 @@ describe('Courses Page', function() {
       });
     });
 
-    it('Post new courses', function(done) {
+    it('can ad dnew courses', function(done) {
       config.logIn(config.currectAdmin, function(err, res) {
         server
           .post('/admin/courses')
           .set('Cookie', config.getCookie(res))
-          .send({ name: 'test', description: 'test' })
+          .send({ name: 'test', description: 'test', _owner: config.currectAdmin._id })
           .end(function(err, res) {
             should(res.status).equal(302);
             should(err).be.empty();
