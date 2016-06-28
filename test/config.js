@@ -10,6 +10,13 @@ module.exports = {
     email: 'admin@test.com',
     admin: true
   }),
+  secondAdmin: new User({
+    name: 'admin2',
+    password: 'changeme2',
+    repeatpassword: 'changeme2',
+    email: 'admin2@test.com',
+    admin: true
+  }),
   currectUser: {
     name: 'test',
     password: 'changeme',
@@ -35,10 +42,15 @@ module.exports = {
   },
   logIn: function(user, done) {
     server
-      .post('/auth/login')
-      .send(user)
-      .expect(302)
-      .expect('Location', '/')
-      .end(done);
+      .get('/auth/logout')
+      .end(function(err) {
+        if (err) throw err;
+        server
+          .post('/auth/login')
+          .send(user)
+          .expect(302)
+          .expect('Location', '/')
+          .end(done);
+      });
   }
 };
