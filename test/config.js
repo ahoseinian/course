@@ -30,7 +30,7 @@ module.exports = {
     user.password = user.generateHash(user.password);
     user.save(function(err) {
       if (err) throw err;
-      done();
+      done(null, user);
     });
   },
   logIn: function(user, done) {
