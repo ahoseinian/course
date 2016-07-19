@@ -19,7 +19,12 @@ describe('Courses Page', function() {
     it('can view a specific course page', function(done) {
       server
         .get('/courses/' + config.sampleCourse._id)
-        .expect(200, done);
+        .expect(200)
+        .end(function(err, res) {
+          should(err).be.empty();
+          res.text.should.match(new RegExp(config.sampleCourse.name, 'g'));
+          done();
+        });
     });
   });
 });
