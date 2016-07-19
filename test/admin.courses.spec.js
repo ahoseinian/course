@@ -18,7 +18,7 @@ describe('Courses Page', function() {
       });
     });
 
-    it('can ad dnew courses', function(done) {
+    it('can add new courses', function(done) {
       config.logIn(config.currectAdmin, function(err, res) {
         server
           .post('/admin/courses')
