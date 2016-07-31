@@ -10,7 +10,7 @@ describe('Auth', function() {
     it('should add currect users', function(done) {
       server
         .post('/auth/signup')
-        .send(config.currectUser)
+        .send(config.sampleUser)
         .expect(302, function(err) {
           should.not.exists(err);
           User.count(function(err, newCount) {

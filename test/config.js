@@ -22,12 +22,14 @@ config.secondAdmin = new User({
   admin: true
 });
 
-config.currectUser = new User({
+config.sampleUser = {
   name: 'test',
   password: 'changeme',
   repeatpassword: 'changeme',
   email: 'test@test.com'
-});
+};
+
+config.currectUser = new User(config.sampleUser);
 
 config.incorrectUser = {
   name: 'test',
