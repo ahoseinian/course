@@ -1,1 +1,13 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap-flex.scss';
+
+.navbar-nav {
+  .nav-item {
+    float: right;
+    &+.nav-item {
+    	margin-right: 1rem;
+		}
+  }
+}
+form.form-inline{
+	direction: rtl;
+}
