@@ -1,4 +1,6 @@
 var express = require('express');
+
+var compression = require('compression');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,6 +12,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var app = express();
+app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +23,8 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+var oneYear = 31557600000;
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneYear }));
 
 app.use(session({
   secret: 'keyboard cat',

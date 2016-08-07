@@ -29,7 +29,15 @@ describe('Courses Page', function() {
         });
     });
 
-    it('can not enroll before signing in');
+    it('can not enroll before signing in', function(done) {
+      server
+        .get('/courses/' + config.sampleCourse._id + '/enroll')
+        .expect(302, function(err, res) {
+          should(err).be.null();
+          res.header.location.should.equal('/auth/login');
+          done();
+        });
+    });
   });
 
   context('user', function() {
